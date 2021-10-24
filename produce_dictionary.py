@@ -48,59 +48,78 @@ produce = pd.DataFrame(produce_dictionary)
 produce.index = ['Cost Per Pound', 'Quantity Sold', 'Total Sale']
 produce = produce.T
 
-#print(produce, '\n')
-'''
-print("1. Produce that had the highest and lowest sales in total sales (both name of produce and value)")
+print("--------------------------------------------------------------------------------------------------------")
 
-#COME BACK TO THIS - STILL NEED ROW HEADER
+
+print("\n1. Produce that had the highest and lowest sales in total sales (both name of produce and value)\n")
+
 totalSale = produce["Total Sale"]
 maxSale = totalSale.max()
-#print(produce.idxmax(axis=0))
 minSale = totalSale.min()
-print(maxSale)
-print(minSale)
-print()
-'''
+print("Highest Sales: ", totalSale.idxmax(axis=0), " $", format(maxSale, ',.2f'), sep='')
+print("Lowest Sales: ", totalSale.idxmin(axis=0), " $", format(minSale, ',.2f'), sep='')
 
 
-print("\n2. Using 'loc', display the quantity and total sales for 'Orange' and 'Beets' (together)")
+print("\n--------------------------------------------------------------------------------------------------------")
+
+
+print("\n2. Using 'loc', display the quantity and total sales for 'Orange' and 'Beets' (together)\n")
 
 print(produce.loc[['Orange', 'Beets'], 'Quantity Sold':'Total Sale'])
 
 
-print("\n3. Using 'loc', display the total sales for 'Apples' through 'Lettuce'")
+print("\n--------------------------------------------------------------------------------------------------------")
+
+
+print("\n3. Using 'loc', display the total sales for 'Apples' through 'Lettuce'\n")
 
 print(produce.loc['Apples':'Lettuce', ['Total Sale']])
 
 
-print("\n4. Using 'at', update the quantity sold for Apricots to 11,955 and total sales to 44,353.05")
+print("\n--------------------------------------------------------------------------------------------------------")
+
+
+print("\n4. Using 'at', update the quantity sold for Apricots to 11,955 and total sales to 44,353.05\n")
+
+print("Original Apricots Quantity Sold:", format(produce.at['Apricots','Quantity Sold'], ',.0f'))
+print("Original Apricots Total Sale: $", format(produce.at['Apricots', 'Total Sale'], ',.2f'), "\n", sep='')
 
 produce.at['Apricots','Quantity Sold']=11955
 produce.at['Apricots', 'Total Sale']=44353.05
-print("Updated Apricots Quantity Sold:", produce.at['Apricots','Quantity Sold'])
-print("Updated Apricots Total Sale:", produce.at['Apricots', 'Total Sale'])
+
+print("Updated Apricots Quantity Sold:", format(produce.at['Apricots','Quantity Sold'], ',.0f'))
+print("Updated Apricots Total Sale: $", format(produce.at['Apricots', 'Total Sale'], ',.2f'), '\n', sep='')
+
+print(produce)
 
 
+print("\n--------------------------------------------------------------------------------------------------------")
 
-print("\n5. What is the average quantity sold across all products? (print out ONLY quantity sold)")
+
+print("\n5. What is the average quantity sold across all products? (print out ONLY quantity sold)\n")
+
 
 quantitySold = produce["Quantity Sold"]
 quantitySoldMean = quantitySold.mean()
-print("Quantity Sold Mean:", quantitySoldMean)
-
-'''
-#FIGURE THIS OUT
-print("6. Create a new dataframe for only those produce that have sold between 11,500 to 12,000 (quantity)")
-
-quantitySoldDF = [(produce["Quantity Sold"] >= 11500) & (produce["Quantity Sold"] <= 12000)]
+print("Average Quantity Sold:", quantitySoldMean)
 
 
+print("\n--------------------------------------------------------------------------------------------------------")
 
 
-print("7. What is the total sales for the products in the above new dataframe? (print out ONLY total sales)")
+print("\n6. Create a new dataframe for only those produce that have sold between 11,500 to 12,000 (quantity)]\n")
 
-print()
-print()
-print()
 
-'''
+new_produce = produce.loc[(produce["Quantity Sold"] >= 11500) & (produce["Quantity Sold"] <= 12000)]
+print(new_produce)
+
+
+print("\n--------------------------------------------------------------------------------------------------------")
+
+
+print("\n7. What is the total sales for the products in the above new dataframe? (print out ONLY total sales)\n")
+
+print("Total Sales of New Produce Dataframe: $", format(new_produce["Total Sale"].sum(), ',.2f'), sep='')
+
+print("\n--------------------------------------------------------------------------------------------------------\n")
+
